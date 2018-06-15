@@ -9,21 +9,17 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
 
   const db = client.db('TodoApp');
 
-  // db.collection('Todos').find().toArray().then((docs)=>{
-  //   console.log(JSON.stringify(docs, undefined, 2));
+  db.collection('Todos').findOneAndDelete({text: 'Something to do 4'}).then((result)=>{
+    console.log(result);
+  },(err)=>{
+    console.log('Error',err)
+  });
+
+  // db.collection('Todos').deleteMany({text: 'Something to do 4'}).then((result)=>{
+  //   console.log(result);
   // },(err)=>{
   //   console.log('Error',err)
   // });
-
-  db.collection('Todos').insertOne({
-    text: 'Something to do 4',
-    completed: true
-  }, (err, result) => {
-    if (err) {
-      return console.log('Error insert', err);
-    }
-    console.log(JSON.stringify(result.ops, undefined, 2));
-  });
-
+  
   client.close();
 });
