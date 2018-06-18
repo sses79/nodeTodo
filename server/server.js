@@ -1,7 +1,7 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 
-// let {mongoose} = require('./db/mongoose');
+let {mongoose} = require('./db/mongoose');
 let {Todo} = require('./models/todo');
 
 let app = express();
@@ -20,6 +20,8 @@ app.post('/todos', (req, res)=>{
     res.status(400).send(e);
   });
 });
+
+app.get('/', )
 
 app.listen(port,()=>{
   console.log(`Started at ${port}`);
